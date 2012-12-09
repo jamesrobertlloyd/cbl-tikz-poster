@@ -12,7 +12,7 @@
 %
 % Document class
 %
-% Change this if you want a different size /orientation poster etc
+% Change this if you want a different size / orientation poster etc
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -23,7 +23,8 @@
 %
 % 'Basic' packages
 %
-% Almost certainly some are unnecessary
+% TODO - Almost certainly some are unnecessary - feel free to remove nonstandard
+% packages if you think it is a good idea not to always have them
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -120,6 +121,7 @@
 % \mysection - replacement for \section*
 % 
 % Puts a pretty box around some text
+% TODO - any other thoughts for what this box should look like
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -128,7 +130,7 @@
 									shade, 
 									outer color=camlightblue!30,
 									inner color=camlightblue!30,
-									text width=0.97\columnwidth,
+									text width=0.965\columnwidth,
 									text centered,
 									rounded corners=20pt,
 									minimum height=0.11\columnwidth]
@@ -146,7 +148,7 @@
 %
 % Set the font
 %
-% Not sure if this is necessary / what its effect is
+% TODO - Not sure what a canonical choice is - feel free to modify
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -157,14 +159,12 @@
 %
 % Poster environment
 %
-% Centres everything and uses a little extra space
-% TODO - experiment with 2 inches and 0.96 - not entirely sure if necessary
+% Centres everything and can be used to define the width of the content
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newenvironment{poster}{
   \begin{center}
-  \hspace{-2in}
   \begin{minipage}[c]{0.96\textwidth}
 }{
   \end{minipage} 
@@ -187,7 +187,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% Begin the poster environment - centres things etc
+% Begin the poster environment - centres things and potentially changes the width
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -195,11 +195,11 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% TODO - should this be wrapped into the poster environment?
+% Potentially add some space at the top of the poster
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\vspace{1\baselineskip}
+\vspace{0\baselineskip}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -211,7 +211,13 @@
 
 \begin{center}
 \begin{tikzpicture}[x=0.5\textwidth]
-  \begin{scope}
+    % Dummy nodes at edges for spacing
+    % TODO - a better way?
+    \node at (+1, 0) {};    
+    \node at (-1, 0) {};
+    % Set the size of the badges
+    \def \badgeheight {0.08\textwidth}
+    % Title text
     \node[inner sep=0,text width=0.5\textwidth,text centered,font=\Huge] (Title) at (0,0) 
     {
         {\sffamily\Huge \textbf{Title}}\\
@@ -219,38 +225,14 @@
         \vspace{-0.3\baselineskip}
         {\sffamily\large 1: Affiliation}
     };
-    % Dummy nodes at edges for spacing
-    % TODO - a better way?
-    \node at (+1, 0) {};    
-    \node at (-1, 0) {};
-    %\node [mybox] (box) at (-0.46\textwidth, 0.006\textwidth) {
-   %     \includegraphics[width=0.045\textwidth]{Cambridge_University_Crest.pdf}
-%    };
-%    \node [mybox] (box) at (-0.46\textwidth, -0.032\textwidth) {
-%        \includegraphics[width=0.045\textwidth]{unicamtext.pdf}
-%    };
-  %  \node [mybox] (box) at (-0.335\textwidth, 0.0082\textwidth) {
-       % \includegraphics[width=0.05\textwidth]{Cambridge_University_Crest.pdf}
-   % };
- %   \node [mybox] (box) at (-0.335\textwidth, -0.0337\textwidth) {
-%        \includegraphics[width=0.05\textwidth]{unicamtext.pdf}
-   % };
-%    \node [mybox] (box) at (-0.38\textwidth, -0.001\textwidth) {
-%        \includegraphics[height=0.09\textwidth,angle=0]{sticker.png}
-%    };
-%    \node [mybox] (box) at (-0.30\textwidth, 0) {
-%        \includegraphics[height=0.068\textwidth]{../figures/paper_qr.png}
-%    };
-%    \node [mybox] (box) at (-0.45\textwidth, 0) {
- %       \includegraphics[height=0.083\textwidth]{../common/paper_qr.png}
-  %  };
-    %\node [mybox] (box) at (+0.39\textwidth, 0) {
-       % \includegraphics[height=0.03\textwidth]{columbia.pdf}
-   % };
-%    \node [mybox] (box) at (+0.33\textwidth, 0) {
-%        \includegraphics[height=0.12\textwidth]{../figures/NIPS.pdf}
-%    };
-  \end{scope}
+    % Cambridge badge
+    \node [mybox] (Cambridge Badge) at (-0.9, 0) {
+        \includegraphics[height=\badgeheight]{../badges/cam-crest-and-text.pdf}
+    };
+    % CBL badge
+    \node [mybox] (CBL Badge) at (+0.9, 0) {
+        \includegraphics[height=\badgeheight]{../badges/cbl-badge-cropped.png}
+    };
 \end{tikzpicture}
 \end{center}
 
@@ -260,7 +242,7 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\vspace{2\baselineskip}
+\vspace{3\baselineskip}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -276,7 +258,7 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\Large
+\large
 
 \mysection{Section}
 
